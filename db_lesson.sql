@@ -71,10 +71,10 @@ select name from people where (gender = 2 and age between 20 and 29) or (gender 
 select * from people where department_id = 1 order by age asc;
 
 -- Q9
-select avg(age) as average_age from people where department_id = 2 group by gender = 2;
+select avg(age) as average_age from people where department_id = 2 and gender = 2;
 
 -- Q10
-select p.name, d.name, r.content from people p inner join reports r on p.person_id = r.person_id inner join departments d on p.department_id = d.department_id;
+select p.name, d.name, r.content from people p inner join reports r using (person_id) inner join departments d using (department_id);
 
 -- Q11
-select p.name, d.name, r.content from people p left outer join reports r using (person_id);
+select p.name, r.content from people p left outer join reports r using (person_id);
